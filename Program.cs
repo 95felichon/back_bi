@@ -43,6 +43,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseExceptionHandler("/error");
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 if (app.Environment.IsDevelopment())
@@ -56,4 +57,5 @@ app.MapControllers();
 app.UseHttpsRedirection();
 
 app.Run();
+
 
