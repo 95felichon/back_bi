@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using back_app_par.auth.register.contracts;
@@ -62,9 +63,28 @@ namespace back_app_par.auth.register.repository
             }
             return false;
         }
-        public Task<string> generarToken(usuario usuario)
+        public async Task<string> generarToken(usuario usuario)
         {
-            
+        var secretkey = _config["Jwt:SecretKey"];
+        var key = System.Text.Encoding.UTF8.GetBytes(secretkey);
+        var claims = new[]
+        {
+            new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+            new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Name, usuario.nombre),
+            new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Role, usuario.idRol.ToString())
+        };
+        var tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor
+        {
+            Subject = new System.Security.Claims.ClaimsIdentity(claims),
+            Expires = DateTime.UtcNow.AddHours(24),
+            SigningCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(key), Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature)
+        };
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        var tokenString = tokenHandler.WriteToken(token);  // Nombre correcto
+        return tokenString;  // ← Devuelves el string
         }
+
     }
+
 }

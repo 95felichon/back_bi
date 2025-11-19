@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/home/sa/app-parental/app_par/back_app_par/back_app_par.csproj": {}
+    "C:\\Users\\felix.llerena\\Documents\\Felix\\PracticAndroid\\back_bi\\back_app_par.csproj": {}
   },
   "projects": {
-    "/home/sa/app-parental/app_par/back_app_par/back_app_par.csproj": {
+    "C:\\Users\\felix.llerena\\Documents\\Felix\\PracticAndroid\\back_bi\\back_app_par.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sa/app-parental/app_par/back_app_par/back_app_par.csproj",
+        "projectUniqueName": "C:\\Users\\felix.llerena\\Documents\\Felix\\PracticAndroid\\back_bi\\back_app_par.csproj",
         "projectName": "back_app_par",
-        "projectPath": "/home/sa/app-parental/app_par/back_app_par/back_app_par.csproj",
-        "packagesPath": "/home/sa/.nuget/packages/",
-        "outputPath": "/home/sa/app-parental/app_par/back_app_par/obj/",
+        "projectPath": "C:\\Users\\felix.llerena\\Documents\\Felix\\PracticAndroid\\back_bi\\back_app_par.csproj",
+        "packagesPath": "C:\\Users\\felix.llerena\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\felix.llerena\\Documents\\Felix\\PracticAndroid\\back_bi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/sa/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\felix.llerena\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -36,9 +43,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -92,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/sa/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

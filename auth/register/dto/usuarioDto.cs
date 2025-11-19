@@ -9,6 +9,7 @@ namespace back_app_par.auth.register.dto
     {
         public string nombre { get; set; }
         public string password { get; set; }
+        public int idRol { get; set; }
         
     }
 }
