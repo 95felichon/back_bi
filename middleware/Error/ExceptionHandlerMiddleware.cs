@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace back_app_par.middleware.Error
 {
-    public class ExceptionHandlerMiddleware
+    public class CustomExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public ExceptionHandlerMiddleware(RequestDelegate next)
+        public CustomExceptionHandlerMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -27,24 +27,20 @@ namespace back_app_par.middleware.Error
                 await HandleException(context, ex);
             }
         }
-        
 
-        // Enviar respuesta en json al cliente
-        public async Task HandleException(HttpContext context, Exception ex)
+        private async Task HandleException(HttpContext context, Exception ex)
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = 500;
 
             var errorResponse = new
             {
-                mesanje = "Ha ocorrido un error",
+                mensaje = "Ha ocurrido un error",
                 error = ex.Message
             };
 
             var json = JsonSerializer.Serialize(errorResponse);
             await context.Response.WriteAsync(json);
         }
-
-
     }
 }

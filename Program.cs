@@ -1,4 +1,7 @@
+using back_app_par.auth.register.contracts;
+using back_app_par.auth.register.repository;
 using back_app_par.data;
+using back_app_par.middleware.Error;
 using back_app_par.test;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
@@ -22,28 +25,18 @@ builder.Services.AddDbContext<appContext>(o =>
 builder.Services.AddControllers();
 
 // CONFIGURAR JWT
-builder.Services.AddAuthentication("Bearer")
-.AddJwtBearer(Options =>
-{
-    Options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-    {
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
-        ClockSkew = TimeSpan.Zero
-    };
-});
+
 
 // IMPLEMENTACIONES
 builder.Services.AddScoped<IPruebaConexion, PruebaServices>();
+builder.Services.AddScoped<ILogin,Login_repo>();
+builder.Services.AddScoped<IRegister, Register_repo>();
 
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseExceptionHandler("/error");
+//app.UseExceptionHandler("/error");
 //app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 if (app.Environment.IsDevelopment())
@@ -52,11 +45,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<CustomExceptionHandlerMiddleware>();
 app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
-app.UseHttpsRedirection();
 
 app.Run();
-
-
 
